@@ -298,7 +298,6 @@ body::before {
   position: relative;
 }
 .progress #bar {
-  pointer-events: none;
   border-radius: 50px;
   width: 50%;
   height: 7px;
@@ -306,7 +305,7 @@ body::before {
   position: absolute;
   bottom: 8px;
   left: 0;
-  z-index: 1;
+  pointer-events: none;
 }
 .progress #bar:hover {
   background-color: var(--clr-primary-150-hover);
@@ -453,7 +452,7 @@ body::before {
   padding: 0.75rem;
   border-radius: 50px;
   font-size: clamp(0.75rem, 0.6458333333rem + 0.4444444444vw, 0.8125rem);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--clr-primary-100);
   font-family: "Manrope", sans-serif;
 }
