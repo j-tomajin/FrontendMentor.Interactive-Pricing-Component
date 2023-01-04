@@ -1,0 +1,56 @@
+@use '../utils/breakpoints' as bp;
+@use '../utils/functions' as f;
+@use '../utils/mixins' as m;
+@use '0-global' as *;
+/* SECTION */
+
+.features {
+    @extend %width;
+    border-top: 1px solid var(--clr-primary-300);
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+    &--display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: f.rem(32);
+
+        @include bp.breakpointMin(small-screen) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    // children
+    &__list {
+
+        .list-item {
+            @include m.text-style(600, var(--clr-neutral-400));
+
+            &--display {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: m.clampf(16, 600, 24);
+
+                @include bp.breakpointMin(small-screen) {
+                    justify-content: unset;
+                }
+            }
+        }
+    }
+    // btn 
+    &__button {
+        background-color: var(--clr-neutral-500);
+        width: m.clampf(200, 600, 170);
+        padding: f.rem(12);
+        border-radius: 50px;
+        font-size: m.clampf(12, 600, 13);
+        @include m.text-style(600, var(--clr-primary-100));
+
+        &:hover {
+            color: var(--clr-neutral-100);
+        }
+    }
+}
