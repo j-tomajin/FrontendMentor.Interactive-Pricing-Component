@@ -6,12 +6,7 @@
 @mixin text-style($fw, $color) {
     font-weight: $fw;
     color: $color;
-    font-family: font.$public-sans;
-
-    @if $fw == 300 {
-        font-size: 1rem;
-        font-size: clamp(1rem, 0.91rem + 0.37vw, 1.125rem);
-    }
+    font-family: font.$manrope;
 }
 
 // clamp
