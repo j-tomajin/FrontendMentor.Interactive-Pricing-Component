@@ -432,8 +432,8 @@ body::before {
   }
 }
 .features__list .list-item {
-  font-weight: 600;
-  color: var(--clr-neutral-400);
+  font-weight: 700;
+  color: var(--clr-neutral-500);
   font-family: "Manrope", sans-serif;
 }
 .features__list .list-item--display {
