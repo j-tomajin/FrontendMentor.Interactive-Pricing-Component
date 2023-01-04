@@ -1,4 +1,279 @@
+@use 'sass:math';
+
 @use '../utils/breakpoints' as bp;
 @use '../utils/functions' as f;
 @use '../utils/mixins' as m;
+@use '0-global' as *;
 /* MAIN */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-neutral-300);
+
+    &::before {
+        content: '';
+        width: 100%;
+        height: 50%;
+        background-color: var(--clr-neutral-200);
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+.main {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    // h1
+    &__head {
+        @include m.text-style(800, var(--clr-neutral-500));
+        font-size: m.clampf(24, 600, 38);
+    }
+    &__sub {
+        @include m.text-style(600, var(--clr-neutral-400));
+        font-size: m.clampf(18, 600, 20);
+        padding: {
+            inline: m.clampf(64, 600, 0);
+        };
+    }
+
+    &__container {
+        @extend %width;
+    }
+}
+
+.billing {
+
+    &--display {
+        display: grid;
+        gap: f.rem(32);
+        place-items: center;
+
+        grid-template-areas: 
+            'pageview'
+            'progressArea'
+            'billingPrice';
+
+        @include bp.breakpointMin(small-screen) {
+            grid-template-areas: 
+                'pageview billingPrice'
+                'progressArea progressArea';
+        }
+    }
+
+    &__pageview {
+        @include m.text-style(600, var(--clr-neutral-400));
+        text-transform: uppercase;
+        grid-area: pageview;
+    }
+
+    &__price {
+        grid-area: billingPrice;
+        @include m.text-style(800, var(--clr-neutral-500));
+        font-size: m.clampf(24, 600, 32);
+        text-transform: uppercase;
+
+        &--display, .price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .price {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-tag {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: m.clampf(40, 600, 60);
+            height: 32px;
+            transition: transform .3s ease-in;
+
+            #price {
+                margin-top: m.clampf(0, 600, -7);
+            }
+        }
+
+        .price-tag-toggle {
+            transform: translateY(m.clampf(-38, 600, -48));
+            // 
+        }
+    }
+    &__period {
+        @include m.text-style(600, var(--clr-neutral-400));
+        font-size: m.clampf(16, 600, 20);
+        text-transform: lowercase;
+        margin-left: f.rem(5);
+    }
+}
+
+// slider
+.progress {
+    width: 100%;
+    position: relative;    
+    grid-area: progressArea;
+
+    #progress {
+        appearance: none;
+        width: 100%;
+        height: 7px;
+        border-radius: 50px;
+        background-color: var(--clr-neutral-200);
+        cursor: pointer;
+        outline: none;
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            z-index: 6;
+            position: relative;
+        }
+    }
+
+
+    #bar {
+        pointer-events: none;
+        border-radius: 50px;
+        width: 50%;
+        height: 7px;
+        background-color: var(--clr-primary-150);
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        z-index: 1;
+
+        &:hover {
+            background-color: var(--clr-primary-150-hover);
+        }
+    }
+
+    &__thumb {
+        height: 104px;
+        width: 35px;
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        z-index: 2;
+
+        .selector {
+            height: 35px;
+            width: 35px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background: {
+                image: url(../images/icon-slider.svg);
+                repeat: no-repeat;
+                position: center;
+                color: var(--clr-primary-150);
+            } 
+
+            &:hover {
+                background-color: var(--clr-primary-150-hover);
+            }
+        }
+    }
+}
+
+.periodical {
+    margin-top: m.clampf(16, 600, 24);
+
+    &__text {
+        @include m.text-style(600, var(--clr-neutral-400));
+        font-size: m.clampf(13, 600, 18);
+    }
+
+    &--display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: m.clampf(12, 600, 16);
+    }
+
+    // toggle
+    .toggle {
+        $width: 40px;
+        $height: 25px;
+        background-color: var(--clr-neutral-250);
+        width: $width;
+        height: $height;
+        border-radius: 50px;
+        padding: 2px;
+        position: relative;
+
+        .slider {
+            position: absolute;
+            width: math.div($width, 2);
+            height: math.div($width, 2);
+            background-color: white;
+            top: 2px;
+            bottom: 2px;
+            left: 3px;
+            border-radius: 50%;
+            transition: all .3s ease-in-out;
+        }
+
+        .slider-toggle {
+            transform: translateX(70%)
+        }
+
+        &:hover {
+            background-color: var(--clr-primary-150);
+        }
+    }
+
+    // yearly period
+    .yearly {
+
+        &__discount {
+            @include m.text-style(800, var(--clr-primary-250));
+            font-size: m.clampf(10, 600, 12);
+            background-color: var(--clr-primary-200);
+            padding: {
+                block: 3px;
+                inline: 5px;
+            };
+            border-radius: 50px;
+            width: fit-content;
+            margin-left: 5px;
+        }
+
+        &--position {
+            position: relative;
+
+            .yearly__discount {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .desktop {
+            display: none;
+        }
+
+        @include bp.breakpointMin(small-screen) {
+            .mobile {
+                display: none;
+            }
+
+            .desktop {
+                display: unset;
+                width: 100px;
+            }
+        }
+    }
+}
