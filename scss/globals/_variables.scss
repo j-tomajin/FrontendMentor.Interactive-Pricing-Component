@@ -1,3 +1,18 @@
 :root {
-    /* Variables here */
+    /* PRIMARY COLORS */
+    --clr-primary-100: hsl(174, 77%, 80%); // soft cyan / full slider bar
+    --clr-primary-150: hsl(174, 86%, 45%); // strong cyan / slider background
+    --clr-primary-200: hsl(14, 92%, 95%); // light grayish red / discounted bg
+    --clr-primary-250: hsl(15, 100%, 70%); // light red / discounted text
+    --clr-primary-300: hsl(226, 100%, 87%); // pale blue / CTA text
+    --clr-primary-150-hover: hsla(174, 85%, 50%);
+
+
+    /* NEUTRAL COLORS */
+    --clr-neutral-100: hsl(0, 0%, 100%); // white / card bg
+    --clr-neutral-200: hsl(224, 65%, 95%); // light grayish blue / empty slider bar
+    --clr-neutral-250: hsl(223, 50%, 87%); // light grayish blue 2 / toggle btn bg
+    --clr-neutral-300: hsl(230, 100%, 99%); // very pale blue / main bg
+    --clr-neutral-400: hsl(225, 20%, 60%); // grayish blue / text
+    --clr-neutral-500:  hsl(227, 35%, 25%); // dark desaturated blue / text & CTA backgraound
 }
