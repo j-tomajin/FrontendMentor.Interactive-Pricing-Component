@@ -26,7 +26,7 @@
     &__list {
 
         .list-item {
-            @include m.text-style(600, var(--clr-neutral-400));
+            @include m.text-style(700, var(--clr-neutral-500));
 
             &--display {
                 display: flex;
@@ -47,7 +47,7 @@
         padding: f.rem(12);
         border-radius: 50px;
         font-size: m.clampf(12, 600, 13);
-        @include m.text-style(600, var(--clr-primary-100));
+        @include m.text-style(700, var(--clr-primary-100));
 
         &:hover {
             color: var(--clr-neutral-100);
