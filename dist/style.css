@@ -214,6 +214,7 @@ body::before {
   font-family: "Manrope", sans-serif;
   font-size: clamp(1.125rem, 0.9166666667rem + 0.8888888889vw, 1.25rem);
   padding-inline: clamp(0rem, 10.6666666667rem + -28.4444444444vw, 4rem);
+  margin-bottom: clamp(2rem, -1.3333333333rem + 14.2222222222vw, 4rem);
 }
 .billing--display {
   display: grid;
