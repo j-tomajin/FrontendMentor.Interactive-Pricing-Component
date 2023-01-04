@@ -1,3 +1,81 @@
 @use '../utils/breakpoints' as bp;
 @use '../utils/functions' as f;
+@use '../utils/mixins' as m;
 @use '../utils/fonts' as font;
+
+%width {
+    width: min(calc(100% - 2rem), f.rem(540));
+    background-color: var(--clr-neutral-100);
+    padding: m.clampf(32, 600, 48) m.clampf(24, 600, 48);
+    margin: {
+        inline: auto;
+    };
+}
+
+.attribution {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: {
+        inline: f.rem(32);
+        block: f.rem(12);
+    };
+    background-color: var(--clr-neutral-500);
+    border-radius: 50px 50px 0 50px;
+    text-align: center;
+    @include m.text-style(600, white);
+    transition: all .3s ease-in-out;
+
+    a {
+        @include m.text-style(700, var(--clr-primary-150));
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin-inline: auto;
+            background-color: var(--clr-primary-150);
+            width: 0;
+            height: 2px;
+            transition: width .3s ease-in-out;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        border-top: 30px solid var(--clr-neutral-500);
+        border-left: 30px solid transparent;
+        bottom: -15px;
+        z-index: -1;
+        right: 0;
+    }
+}
+
+.attribution-toggle {
+    animation: animationAttr .5s forwards;
+
+    &:hover {
+        animation: none;
+    }
+}
+
+@keyframes animationAttr {
+    20% {
+        transform: translateX(10px);
+    }
+
+    50%, 
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+    }
+}
