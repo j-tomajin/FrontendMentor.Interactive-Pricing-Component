@@ -40,6 +40,7 @@ body {
         padding: {
             inline: m.clampf(64, 600, 0);
         };
+        margin-bottom: m.clampf(32, 600, 64);
     }
 
     &__container {
